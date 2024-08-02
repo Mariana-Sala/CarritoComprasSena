@@ -30,7 +30,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+        $category->name=$request->input('name');
+        $category->description=$request->input('description');
+        $category->state=$request->input('state');
+        $category->save();
+        return view("dashboard.category.message",['msg' => "Categoria agregada con Exito"]);
     }
 
     /**
@@ -46,7 +51,9 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('dashboard.category.edit',['category'=>$category]);
+
     }
 
     /**
@@ -54,7 +61,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category=Category::find($id);
+        $category->name=$request->input('name');
+        $category->description=$request->input('description');
+        $category->state=$request->input('state');
+        $category->save();
+        return view("dashboard.category.message",['msg' => "Categoria actualizada con Exito"]);
     }
 
     /**
@@ -62,6 +74,8 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category=Category::find($id);
+        $category->delete();
+        return redirect("dashboard/category");
     }
 }

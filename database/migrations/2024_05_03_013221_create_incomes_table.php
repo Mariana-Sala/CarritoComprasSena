@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('status', 20);
             $table->timestamps();
 
-            $table->foreign('provider_id')->references('id')->on('people');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('provider_id')->references('id')->on('person');
+            $table->foreign('user_id')->references('id')->on('user');
         });
     }
 

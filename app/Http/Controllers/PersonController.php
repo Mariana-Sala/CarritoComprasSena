@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Person;
 
 class PersonController extends Controller
 {
@@ -12,7 +13,8 @@ class PersonController extends Controller
      */
     public function index()
     {
-        //
+        $person=Person::all();
+        return view('dashboard.person.index', ['person'=>$person]);
     }
 
     /**
@@ -20,7 +22,7 @@ class PersonController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.person.create');
     }
 
     /**
@@ -28,7 +30,17 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $person = new Person();
+        $person->Firts_Name=$request->input('Firts_Name');
+        $person->Last_Name=$request->input('Last_Name');
+        $person->type=$request->input('type');
+        $person->Document_Type=$request->input('Document_Type');
+        $person->Document_Number=$request->input('Document_Number');
+        $person->Adress=$request->input('Adress');
+        $person->Phone=$request->input('Phone');
+        $person->Email=$request->input('Email');
+        $person->save();
+        return view("dashboard.person.message",['msg' => "Persona agregada con Exito"]);
     }
 
     /**
@@ -44,7 +56,8 @@ class PersonController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $person = Person::find($id);
+        return view('dashboard.person.edit',['person'=>$person]);
     }
 
     /**
@@ -52,7 +65,17 @@ class PersonController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $person = Person::find($id);
+        $person->Firts_Name=$request->input('Firts_Name');
+        $person->Last_Name=$request->input('Last_Name');
+        $person->type=$request->input('type');
+        $person->Document_Type=$request->input('Document_Type');
+        $person->Document_Number=$request->input('Document_Number');
+        $person->Adress=$request->input('Adress');
+        $person->Phone=$request->input('Phone');
+        $person->Email=$request->input('Email');
+        $person->save();
+        return view("dashboard.person.message",['msg' => "Persona actualizada con Exito"]);
     }
 
     /**
@@ -60,6 +83,8 @@ class PersonController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $person=Person::find($id);
+        $person->delete();
+        return redirect("dashboard/person");
     }
 }

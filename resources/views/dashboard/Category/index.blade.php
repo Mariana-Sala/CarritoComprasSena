@@ -3,7 +3,7 @@
 @include('layouts/navigation')
 @section('contenido')
 <main>
-    <div>
+    <div class="container py-4">
         <h1>Listado de Categorias</h1>
         <br>
         <a href="{{url('dashboard/category/create')}}" class="btn btn-primary btn-sm">Nueva Categoria</a>
@@ -33,11 +33,6 @@
                             <button class="bi bi-eraser-fill" type="submit"></button>
                         </form>
                     </td>
-                </tr>
-                <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
                 </tr>
                 @endforeach
             </tbody>

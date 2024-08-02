@@ -27,9 +27,9 @@ Route::middleware('auth')->group(function () {
     //Rutas de nuestra app
     Route::resource('/dashboard/article',ArticleController::class);
     Route::resource('/dashboard/category',CategoryController::class);
-    //Route::resource('/dashboard/article',IncomeController::class);
-    //Route::resource('/dashboard/article',Income_detailController::class);
     Route::resource('/dashboard/person',PersonController::class);
+    Route::resource('/dashboard/income',IncomeController::class);
+    //Route::resource('/dashboard/article',Income_detailController::class);
     //Route::resource('/dashboard/article',SaleController::class);
     //Route::resource('/dashboard/article',Sale_detailController::class);
 });
